@@ -1,5 +1,3 @@
-import { ComboboxItem } from '@mantine/core';
-
 export interface TodoI {
   id: number;
   text: string;
@@ -8,6 +6,7 @@ export interface TodoI {
 
 export type TodoCategories = 'all' | 'active' | 'completed';
 
-export interface CategoryListItemI extends ComboboxItem {
+export interface CategoryListItemI {
+  label: string;
   value: TodoCategories;
 }

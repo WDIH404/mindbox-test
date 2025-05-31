@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { MantineProvider } from '@mantine/core';
-import '@mantine/core/styles.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const theme = createTheme();
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
   root.render(
     <React.StrictMode>
-      <MantineProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
-      </MantineProvider>
+      </ThemeProvider>
     </React.StrictMode>,
   );
 }

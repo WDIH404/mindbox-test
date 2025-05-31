@@ -1,5 +1,8 @@
-import { List, Checkbox, Group, ActionIcon, Text } from '@mantine/core';
-import { IconTrash } from '@tabler/icons-react';
+import ListItem from '@mui/material/ListItem';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { TodoItemProps } from './TodoItem.types';
 
@@ -9,25 +12,24 @@ export const TodoItem = ({
   onDeleteTodo,
 }: TodoItemProps) => {
   return (
-    <List.Item
+    <ListItem
       key={todo.id}
-      icon={
-        <Checkbox checked={todo.completed} onChange={onToggleTodo} size="sm" />
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete" onClick={onDeleteTodo}>
+          <DeleteIcon fontSize="small" />
+        </IconButton>
       }
+      disablePadding
     >
-      <Group>
-        <Text
-          style={{
-            textDecoration: todo.completed ? 'line-through' : 'none',
-            color: todo.completed ? 'gray' : 'inherit',
-          }}
-        >
-          {todo.text}
-        </Text>
-        <ActionIcon color="red" onClick={onDeleteTodo} variant="light">
-          <IconTrash size="1rem" />
-        </ActionIcon>
-      </Group>
-    </List.Item>
+      <Checkbox checked={todo.completed} onChange={onToggleTodo} size="small" />
+      <Typography
+        sx={{
+          textDecoration: todo.completed ? 'line-through' : 'none',
+          color: todo.completed ? 'gray' : 'inherit',
+        }}
+      >
+        {todo.text}
+      </Typography>
+    </ListItem>
   );
 };
